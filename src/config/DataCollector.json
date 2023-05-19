@@ -1,0 +1,9 @@
+{
+  "db_host": "localhost",
+  "db_name": "CeoAssist",
+  "db_user": "postgres",
+  "db_pw": "postgres",
+  "db_port": 5432,
+  "data_directory": "data/"
+}
+
