@@ -1,5 +1,11 @@
 package main
 
+import (
+	"CEO_ASSIST/Router"
+	"CEO_ASSIST/db"
+	"flag"
+)
+
 func init() {
 
 	/*RUN BEFORE THE MAIN FUNCTION RUNS*/
@@ -8,7 +14,12 @@ func init() {
 
 func main() {
 
-	/*DATABASE CALL*/
-	/*ROUTER CALL*/
+	flag.Parse()
+
+	/*DATABASE CONNECTION*/
+	db.DATABASE_CONNECTION()
+
+	/*ROUTER ENGINE*/
+	Router.Router_Engine()
 
 }

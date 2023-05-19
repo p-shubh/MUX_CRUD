@@ -1,10 +1,10 @@
 package config
 
 import (
+	db "CEO_ASSIST/db"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	db "prajapati/db"
 )
 
 /*

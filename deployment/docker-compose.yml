@@ -1,0 +1,46 @@
+version: '3.1'
+
+services:
+
+  # we will use postgres as datasource.
+  postgres:
+    image: postgres:9.6.6
+    environment:
+      POSTGRES_USER: postgres     # define credentials
+      POSTGRES_PASSWORD: postgres # define credentials
+      POSTGRES_DB: postgres       # define database
+    ports:
+      - 5432:5432                 # Postgres port
+    volumes:
+      - ./postgres/sql:/docker-entrypoint-initdb.d
+    restart: always
+
+  # access for the posgres
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  # intellexente
+  intellexente:
+    image: intellexente/intellixente:production-FBML-13-05-2023
+
+
+    restart: always
+
+    ports:
+      - 2020:2020
+    links:
+      - postgres
+    volumes:
+      - ../src/data/:/opt/intellixente/data:consistent
+      - ../src/config/:/opt/intellixente/config:consistent
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+
+    command: [ '/opt/intellixente/bin/intellexente_router','-f', "${CONFIG_FILE}" ]
+
+
+
+
